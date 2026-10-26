@@ -9,7 +9,6 @@ $ErrorActionPreference = "Stop"
 
 Set-Location $PSScriptRoot
 $name = [IO.Path]::GetFileNameWithoutExtension($Src)
-if (-not $Title) { $Title = $name }
 New-Item -ItemType Directory -Force -Path output | Out-Null
 
 # Typst expects forward slashes in paths, even on Windows.

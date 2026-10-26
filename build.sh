@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 name=$(basename "$1" .md)
 mkdir -p output
 
-set -- "${1#./}" "${2:-}" "${3:-$name}"
+set -- "${1#./}" "${2:-}" "${3:-}"
 typst compile --root . \
   --input src="$1" --input subteam="$2" --input title="$3" \
   template/main.typ "output/$name.pdf"
