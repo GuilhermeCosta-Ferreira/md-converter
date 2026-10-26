@@ -24,14 +24,30 @@
   v(1em)
 }
 
+#let _meta-card(meta) = {
+  if meta.len() == 0 { return }
+  block(width: 100%, fill: accent.lighten(92%), radius: 3pt, inset: 10pt, {
+    set text(size: 9pt)
+    grid(
+      columns: (auto, 1fr, auto, 1fr),
+      column-gutter: 10pt,
+      row-gutter: 7pt,
+      ..meta.map(((k, v)) => (text(fill: accent, weight: "bold", k), v)).flatten(),
+    )
+  })
+  v(1em)
+}
+
 /// Applies the N-Pulse style to `body`.
 /// `title` and `subteam` fill the title block and {placeholders} in config.
-#let npulse(title: "", subteam: "", body) = {
+/// `meta` is a list of (key, value) pairs shown in a card under the title.
+/// `numbered` is off for documents that already number their headings.
+#let npulse(title: "", subteam: "", meta: (), numbered: true, body) = {
   let doc = config.document
   set document(title: title, author: config.team.name)
   set text(font: doc.font, size: eval(doc.font-size), lang: doc.lang)
   set par(justify: true)
-  set heading(numbering: "1.1")
+  set heading(numbering: if numbered { "1.1" })
   show link: set text(fill: accent)
   show heading: set text(fill: accent)
   show heading.where(level: 1): it => block(above: 1.6em, below: 1em, {
@@ -46,6 +62,10 @@
     stroke: (left: 2pt + accent), inset: (left: 10pt, y: 4pt),
   )
   set table(stroke: 0.5pt + accent.lighten(40%))
+  // Justified text in narrow cells leaves big gaps between words.
+  show table: set par(justify: false)
+  show table: set text(size: 0.9em)
+  set line(stroke: 0.6pt + accent)
   show table.cell.where(y: 0): set text(weight: "bold")
 
   let fill(s) = s.replace("{title}", title).replace("{subteam}", subteam)
@@ -73,5 +93,6 @@
   )
 
   _title-block(title, subteam)
+  _meta-card(meta)
   body
 }
