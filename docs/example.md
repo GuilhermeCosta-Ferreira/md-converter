@@ -1,7 +1,6 @@
 # Overview
 
-This is an example of a subteam documentation file. Write plain Markdown and
-the converter turns it into a styled N-Pulse PDF.
+This is an example of a subteam documentation file. Write plain Markdown and the converter turns it into a styled N-Pulse PDF.
 
 # Formatting
 

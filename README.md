@@ -1,21 +1,18 @@
 # N-Pulse Markdown → PDF
 
-Turns the subteams' Markdown documentation into PDFs with the EPFL N-Pulse
-look (accent `#46A999`, team header, page-numbered footer). It uses
-[Typst](https://typst.app), a single small program, so there is no LaTeX,
-Python or Node to install. Works on macOS, Windows and Linux.
+Turns the subteams' Markdown documentation into PDFs with the EPFL N-Pulse look (accent `#46A999`, team header, page-numbered footer). It uses [Typst](https://typst.app), a single small program, so there's no LaTeX, Python or Node to install. Works on macOS, Windows and Linux.
 
 ## 1. Setup (once per computer)
 
 ### 1.1 Install Typst
 
-**macOS** — with [Homebrew](https://brew.sh):
+**macOS**, with [Homebrew](https://brew.sh):
 
 ```bash
 brew install typst
 ```
 
-**Windows** — in PowerShell:
+**Windows**, in PowerShell:
 
 ```powershell
 winget install --id Typst.Typst
@@ -27,9 +24,7 @@ Close and reopen the terminal afterwards, then check it worked:
 typst --version
 ```
 
-You need version 0.13 or newer. If `winget` is unavailable, download the
-`.zip` from the [Typst releases page](https://github.com/typst/typst/releases),
-extract `typst.exe` and add its folder to your `PATH`.
+You need version 0.13 or newer. If `winget` is unavailable, download the `.zip` from the [Typst releases page](https://github.com/typst/typst/releases), extract `typst.exe` and add its folder to your `PATH`.
 
 ### 1.2 Get this repository
 
@@ -46,8 +41,7 @@ PowerShell blocks local scripts by default. Run this once:
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
-The first build needs internet: Typst downloads the Markdown package
-(`cmarker`) once and caches it.
+The first build needs internet: Typst downloads the Markdown package (`cmarker`) once and caches it.
 
 ## 2. Converting a file
 
@@ -66,24 +60,18 @@ The first build needs internet: Typst downloads the Markdown package
 .\build.ps1 docs\example.md "Software" "Software Documentation"
 ```
 
-Arguments: the Markdown file, then the **subteam** name, then the **title**.
-Subteam and title are optional (title defaults to the file name). The PDF
-lands in `output/` with the same name as the `.md` file.
+Arguments: the Markdown file, then the **subteam** name, then the **title**. Subteam and title are optional (title defaults to the file name). The PDF lands in `output/` with the same name as the `.md` file.
 
 ## 3. Writing rules
 
-- The title is added automatically from the command, so **don't start the
-  file with your own title**. Use `#` for sections and `##` for
-  sub-sections; they are numbered automatically (1, 1.1, …).
-- Supported: bold, italics, links, lists, tables, quotes, code blocks with
-  syntax highlighting, images.
+- The title is added automatically from the command, so **don't start the file with your own title**. Use `#` for sections and `##` for sub-sections. They're numbered automatically (1, 1.1, …).
+- Supported: bold, italics, links, lists, tables, quotes, code blocks with syntax highlighting, images.
 - Image paths are relative to the `.md` file, e.g. `![Board](img/board.png)`.
 - See [docs/example.md](docs/example.md) for a sample.
 
 ## 4. Customizing
 
-Everything team-wide lives in [config.toml](config.toml) — no Typst
-knowledge needed:
+Everything team-wide lives in [config.toml](config.toml), and no Typst knowledge is needed:
 
 | Setting | What it does |
 |---|---|
@@ -92,11 +80,9 @@ knowledge needed:
 | `footer.left` / `footer.center` | Text at the bottom (page number is always on the right) |
 | `document.font`, `font-size`, `paper`, `lang` | Body text and page format |
 
-In header/footer text, `{subteam}` and `{title}` are replaced with the
-values from the build command. Use `""` to leave a slot empty.
+In header/footer text, `{subteam}` and `{title}` are replaced with the values from the build command. Use `""` to leave a slot empty.
 
-If a font in `config.toml` isn't installed on a machine, Typst falls back to
-a built-in font and prints a warning — the PDF still builds.
+If a font in `config.toml` isn't installed on a machine, Typst falls back to a built-in font and prints a warning. The PDF still builds.
 
 ## 5. How it works
 
@@ -109,8 +95,4 @@ docs/                  Markdown sources
 output/                generated PDFs (git-ignored)
 ```
 
-The scripts run `typst compile --root .` with the Markdown path, subteam and
-title passed as `--input` values. `main.typ` renders the Markdown with the
-[cmarker](https://typst.app/universe/package/cmarker) package. Paths are
-given relative to the repo root because Typst can only read files inside
-`--root`, which is why your `.md` files must live inside this folder.
+The scripts run `typst compile --root .` with the Markdown path, subteam and title passed as `--input` values. `main.typ` renders the Markdown with the [cmarker](https://typst.app/universe/package/cmarker) package. Paths are given relative to the repo root because Typst can only read files inside `--root`, which is why your `.md` files must live inside this folder.
