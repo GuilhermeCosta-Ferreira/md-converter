@@ -51,13 +51,13 @@ The first build needs internet: Typst downloads the Markdown package (`cmarker`)
 **macOS / Linux:**
 
 ```bash
-./build.sh docs/example.md "Software" "Software Documentation"
+./build.sh docs/SDR.md "Decoding Team" "Design Solution Definition: EMG Decoding Pipeline"
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-.\build.ps1 docs\example.md "Software" "Software Documentation"
+.\build.ps1 docs/SDR.md "Decoding Team" "Design Solution Definition: EMG Decoding Pipeline"
 ```
 
 Arguments: the Markdown file, then the **subteam** name, then the **title**. Subteam and title are optional (title defaults to the file name). The PDF lands in `output/` with the same name as the `.md` file.
