@@ -65,6 +65,7 @@
   // Justified text in narrow cells leaves big gaps between words.
   show table: set par(justify: false)
   show table: set text(size: 0.9em)
+  show table: align.with(center)
   set line(stroke: 0.6pt + accent)
   show table.cell.where(y: 0): set text(weight: "bold")
 
