@@ -61,8 +61,9 @@
   show quote.where(block: true): block.with(
     stroke: (left: 2pt + accent), inset: (left: 10pt, y: 4pt),
   )
+  set table(stroke: 0.5pt + accent.lighten(40%))
   // Cells stay left-aligned even though the table itself is centered below.
-  set table(stroke: 0.5pt + accent.lighten(40%), align: left)
+  show table.cell: set align(left)
   // Justified text in narrow cells leaves big gaps between words.
   show table: set par(justify: false)
   show table: set text(size: 0.9em)
