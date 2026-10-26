@@ -64,10 +64,22 @@ Arguments: the Markdown file, then the **subteam** name, then the **title**. Sub
 
 ## 3. Writing rules
 
-- The title is added automatically from the command, so **don't start the file with your own title**. Use `#` for sections and `##` for sub-sections. They're numbered automatically (1, 1.1, …).
+- The title is added automatically from the command, so **don't start the file with your own title**.
+- Use `#` for sections and `##` for sub-sections. They're numbered automatically (1, 1.1, …). If your headings already carry their own numbers (`## 1. Introduction`), automatic numbering is switched off. If the biggest heading in the file is `##`, it's treated as a top-level section.
 - Supported: bold, italics, links, lists, tables, quotes, code blocks with syntax highlighting, images.
 - Image paths are relative to the `.md` file, e.g. `![Board](img/board.png)`.
 - See [docs/example.md](docs/example.md) for a sample.
+
+### Metadata block
+
+If the file starts with a quote made of `**Key:** value` lines, it's shown as a card under the title instead of as a quote. To put several pairs on one line, separate them with ` · `. A `Project` entry becomes the title when the build command doesn't give one, and a `---` right after the block is dropped.
+
+```markdown
+> **Project:** EMG Decoder V2
+> **Version:** `0.1.0` · **Status:** `Draft`
+
+---
+```
 
 ## 4. Customizing
 
