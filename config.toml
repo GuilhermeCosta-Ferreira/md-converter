@@ -1,0 +1,22 @@
+# Shared settings for every generated PDF.
+# Per-document values (subteam, title) are passed by the build scripts.
+
+[team]
+name = "EPFL N-Pulse"
+accent = "#46A999"
+
+[header]
+# Leave a field empty ("") to hide it. {subteam} and {title} are substituted.
+left = "EPFL N-Pulse"
+right = "{subteam}"
+
+[footer]
+left = "{title}"
+center = ""
+# The page number is always printed on the right.
+
+[document]
+font = "Libertinus Serif"
+font-size = "11pt"
+paper = "a4"
+lang = "en"
